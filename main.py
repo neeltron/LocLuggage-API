@@ -29,6 +29,16 @@ def index():
 
 
 
+@app.route('/output')
+def output():
+  x = db['lat']
+  y = db['long']
+  dict = {"lat": str(x), "long": str(y)}
+  json_data = json.dumps(dict)
+  return json_data
+
+
+
 if __name__ == '__main__':
   # Run the Flask app
   app.run(
