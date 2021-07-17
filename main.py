@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, make_response, redirect, url_for
 import json
+from flask_cors import CORS, cross_origin
 
 app = Flask(
   __name__,
@@ -7,11 +8,15 @@ app = Flask(
   static_folder='static'
 )
 
+cors = CORS(app, resources={r"/input": {"origins": "*"}})
+app.config['CORS_HEADERS'] = 'Content-Type'
+
 @app.route('/')
 def start():
   return "hi"
 
 @app.route('/input')
+@cross_origin(origin='*',headers=['Content-Type','Authorization'])
 def index():
   x = request.args.get('x')
   dict = {"lat": str(x)}
