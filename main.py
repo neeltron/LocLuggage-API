@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, make_response, redirect, url_for
 import json
 from flask_cors import CORS, cross_origin
+from replit import db
 
 app = Flask(
   __name__,
@@ -20,6 +21,8 @@ def start():
 def index():
   x = request.args.get('x')
   y = request.args.get('y')
+  db['lat'] = x
+  db['long'] = y
   dict = {"lat": str(x), "long": str(y)}
   json_data = json.dumps(dict)
   return json_data
