@@ -8,7 +8,8 @@ app = Flask(
 
 @app.route('/')
 def index():
-  return render_template('index.html')
+  x = request.args.get('x')
+  return x
 
 
 
