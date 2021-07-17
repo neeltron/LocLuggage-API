@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, make_response, redirect, url_for
+import json
 
 app = Flask(
   __name__,
@@ -7,9 +8,15 @@ app = Flask(
 )
 
 @app.route('/')
+def start():
+  return "hi"
+
+@app.route('/input')
 def index():
   x = request.args.get('x')
-  return x
+  dict = {"lat": str(x)}
+  json_data = json.dumps(dict)
+  return json_data
 
 
 
