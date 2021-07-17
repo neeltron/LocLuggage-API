@@ -19,7 +19,8 @@ def start():
 @cross_origin(origin='*',headers=['Content-Type','Authorization'])
 def index():
   x = request.args.get('x')
-  dict = {"lat": str(x)}
+  y = request.args.get('y')
+  dict = {"lat": str(x), "long": str(y)}
   json_data = json.dumps(dict)
   return json_data
 
